@@ -1,64 +1,89 @@
-# Business Dashboard Portfolio Scaffold
+# Business Dashboard Reporting Portfolio (Excel + Google Sheets)
 
-**Value proposition:** A lightweight, client-friendly workflow that turns messy spreadsheet sales data into dashboard-ready KPI tables and a business insight report.
+**Value proposition:** This project shows how messy spreadsheet-style business data can be cleaned into dashboard-ready tables and plain-English reporting notes that a small business owner can review quickly.
 
-## Overview
-This project demonstrates a practical reporting process often requested by small business clients on Upwork and LinkedIn: clean raw spreadsheet exports, calculate core KPIs, and produce simple monthly/category summaries for dashboarding.
+## What business problem this solves
+Small businesses often have sales and expense exports in CSV or spreadsheet form, but not a clear monthly performance view. This project demonstrates a practical workflow to convert that raw data into usable KPI and summary outputs for reporting.
 
-## Business problem
-Small businesses often track sales and expenses in spreadsheets but struggle to convert that data into clear performance insights.
+## What this project produces
+- Cleaned, dashboard-ready dataset (`data/dashboard_ready_data.csv`)
+- KPI summary table (`dashboard/kpi_summary.csv`)
+- Monthly performance table (`dashboard/monthly_summary.csv`)
+- Category performance table (`dashboard/category_summary.csv`)
+- Plain-English business insights report (`reports/business_insights_report.md`)
+- Excel/Google Sheets dashboard build notes (`docs/dashboard_build_notes.md`)
 
-## Synthetic data and privacy note
-All data in this repository is synthetic and created for portfolio use. No real company, customer, or private data is included.
+## Synthetic data and privacy
+All data in this repository is synthetic (sample data created for portfolio/demo use). No real company data, private data, APIs, secrets, or paid services are used.
 
-## Tools used
-- Python
-- pandas
-- CSV + Markdown deliverables
-- Excel/Google Sheets compatible outputs
+## Start Here
+### For clients
+1. Read **Client Deliverables** below.
+2. Review `dashboard/kpi_summary.csv`.
+3. Review `reports/business_insights_report.md`.
 
-## Workflow
-1. Load raw spreadsheet-style transactional data (`data/raw_business_data.csv`).
-2. Clean fields (spaces, capitalization, mixed dates, missing discount values, duplicates).
-3. Calculate revenue and estimated profit.
-4. Produce dashboard-ready data and summary tables.
-5. Generate a short client-facing insights report.
+### For technical reviewers
+1. Review `src/prepare_dashboard_data.py`.
+2. Compare `data/raw_business_data.csv` and `data/dashboard_ready_data.csv`.
+3. Run: `python src/prepare_dashboard_data.py`.
 
-## Client deliverables
-- Cleaned dashboard dataset
-- KPI summary
-- Monthly summary
-- Category summary
+### For spreadsheet/dashboard users
+1. Review `docs/dashboard_build_notes.md`.
+2. Review `dashboard/monthly_summary.csv`.
+3. Review `dashboard/category_summary.csv`.
+
+## Client Deliverables
+For a client-style dashboard/reporting engagement, this project structure can produce:
+- Cleaned dashboard-ready dataset
+- KPI summary table
+- Monthly performance table
+- Category performance table
 - Business insights report
-- Documentation for Excel/Google Sheets dashboard build
+- Excel/Google Sheets dashboard build notes
 
-## Dashboard outputs
-- `dashboard/kpi_summary.csv`
-- `dashboard/monthly_summary.csv`
-- `dashboard/category_summary.csv`
+This repository is a portfolio demonstration using synthetic data and does not claim real business ROI.
 
-## Key insights (example)
-- Which month had strongest profit.
-- Which product category generated the most revenue.
-- Which region contributed the highest revenue.
+## Skills Demonstrated
+- Spreadsheet data cleanup for inconsistent exports
+- KPI definition for business reporting
+- Dashboard-ready summary table generation
+- Monthly trend reporting structure
+- Category performance reporting structure
+- Business insight communication in plain English
+- Reproducible Python workflow (`python src/prepare_dashboard_data.py`)
+- Excel/Google Sheets dashboard planning
 
 ## How to run
 ```bash
 python src/prepare_dashboard_data.py
 ```
 
-## Repository structure
-See folder-level outputs in `data/`, `dashboard/`, `reports/`, and `docs/`.
-
-## Limitations
-- Synthetic and small dataset.
-- No live integrations or automated refresh.
-- No visualization binaries in this first PR.
-
-## Future improvements
-- Add 12+ months of synthetic history.
-- Add optional Excel/Google Sheets dashboard screenshots in later PRs.
-- Add separate regional/channel summaries.
+## Repository Structure
+```text
+business-dashboard-excel-google-sheets/
+├── README.md
+├── LICENSE
+├── requirements.txt
+├── .gitignore
+├── src/
+│   └── prepare_dashboard_data.py
+├── data/
+│   ├── raw_business_data.csv
+│   └── dashboard_ready_data.csv
+├── dashboard/
+│   ├── kpi_summary.csv
+│   ├── monthly_summary.csv
+│   ├── category_summary.csv
+│   └── dashboard_overview.md
+├── reports/
+│   └── business_insights_report.md
+├── docs/
+│   ├── client_delivery_notes.md
+│   ├── dashboard_build_notes.md
+│   └── data_dictionary.md
+└── visuals/
+    └── .gitkeep
+```
 
 ## License
 MIT License. See `LICENSE`.
