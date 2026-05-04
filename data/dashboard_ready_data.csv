@@ -1,0 +1,13 @@
+transaction_id,transaction_date,customer_segment,product_category,product_name,region,sales_channel,quantity,unit_price,discount,expense_category,expense_amount,payment_method,revenue,estimated_profit,year,month
+TXN-009,2026-04-04,Enterprise,Software,Subscription Basic,West,Online,4,99.99,0.0,Platform,50.0,Bank Transfer,399.96,349.96,2026.0,2026-04
+TXN-001,2026-05-01,Small Business,Office Supplies,Notebook Pack,North,Online,10,12.5,0.05,Shipping,18.0,Card,118.75,100.75,2026.0,2026-05
+TXN-007,2026-11-03,Small Business,Office Supplies,Desk Organizer,East,In Store,5,18.2,0.0,Shipping,8.25,Card,91.0,82.75,2026.0,2026-11
+TXN-002,,Enterprise,Software,Subscription Basic,West,Online,3,99.99,0.0,Platform,45.5,Bank Transfer,299.96999999999997,254.46999999999997,,
+TXN-003,,Retail,Electronics,Wireless Mouse,South,In Store,7,25.0,0.1,Returns,12.4,Cash,157.5,145.1,,
+TXN-004,,Small Business,Office Supplies,Printer Paper,East,Online,20,6.75,0.0,Shipping,10.0,Card,135.0,125.0,,
+TXN-005,,Retail,Electronics,Usb-C Cable,North,Online,15,8.5,0.15,Marketing,9.75,Card,108.375,98.625,,
+TXN-006,,Enterprise,Software,Subscription Pro,West,Online,2,199.0,0.05,Platform,60.0,Bank Transfer,378.09999999999997,318.09999999999997,,
+TXN-008,,Retail,Electronics,Keyboard,South,Online,4,45.0,0.2,Returns,14.0,Cash,144.0,130.0,,
+TXN-010,,Retail,Office Supplies,Stapler,North,In Store,9,11.0,0.05,Shipping,7.9,Card,94.05,86.14999999999999,,
+TXN-011,,Small Business,Electronics,Monitor Stand,East,Online,6,34.5,0.1,Marketing,15.2,Card,186.3,171.10000000000002,,
+TXN-012,,Enterprise,Software,Subscription Pro,West,Online,1,199.0,0.0,Platform,58.0,Bank Transfer,199.0,141.0,,
