@@ -16,6 +16,41 @@ def clean_text(value: str) -> str:
     return str(value).strip().title()
 
 
+def parse_mixed_date(value: object) -> pd.Timestamp:
+    """Parse mixed raw date values into a timestamp.
+
+    Tries clear formats first, then falls back to pandas inference.
+    """
+    if pd.isna(value):
+        return pd.NaT
+
+    value_text = str(value).strip()
+    if not value_text:
+        return pd.NaT
+
+    explicit_formats = [
+        "%Y-%m-%d",
+        "%Y/%m/%d",
+        "%m/%d/%Y",
+        "%m-%d-%Y",
+        "%B %d, %Y",
+        "%b %d %Y",
+    ]
+
+    for fmt in explicit_formats:
+        parsed = pd.to_datetime(value_text, format=fmt, errors="coerce")
+        if not pd.isna(parsed):
+            return parsed
+
+    # Handle ambiguous dash formats by trying day-first and month-first safely.
+    for fmt in ["%d-%m-%Y", "%m-%d-%Y"]:
+        parsed = pd.to_datetime(value_text, format=fmt, errors="coerce")
+        if not pd.isna(parsed):
+            return parsed
+
+    return pd.to_datetime(value_text, errors="coerce")
+
+
 def build_report(kpi_df: pd.DataFrame, monthly_df: pd.DataFrame, category_df: pd.DataFrame, region_df: pd.DataFrame) -> str:
     kpis = dict(zip(kpi_df["kpi"], kpi_df["value"]))
     best_month = monthly_df.sort_values("estimated_profit", ascending=False).iloc[0]
@@ -32,8 +67,9 @@ How is monthly revenue and profit performing, and which categories and regions s
 
 ## Dataset description and caveats
 - Synthetic transactional data for portfolio demonstration only.
-- Mixed date formats and inconsistent text were cleaned for reporting.
+- Mixed raw date formats were standardized during preparation for consistent monthly reporting.
 - One duplicate business row was removed during preparation.
+- No real company data is used; outputs are synthetic demo data only.
 
 ## Dashboard KPI snapshot
 - Total Revenue: {kpis['Total Revenue']}
@@ -67,6 +103,7 @@ Online sales channel activity is dominant, suggesting digital sales operations a
 
 def main() -> None:
     df = pd.read_csv(RAW_DATA_PATH)
+    raw_row_count = len(df)
 
     df.columns = [col.strip().lower() for col in df.columns]
 
@@ -94,7 +131,10 @@ def main() -> None:
     for col in ["quantity", "unit_price", "expense_amount"]:
         df[col] = pd.to_numeric(df[col], errors="coerce")
 
-    df["transaction_date"] = pd.to_datetime(df["transaction_date"], errors="coerce", dayfirst=True)
+    raw_date_series = df["transaction_date"].copy()
+    df["transaction_date"] = df["transaction_date"].apply(parse_mixed_date)
+    raw_non_empty_dates = raw_date_series.astype(str).str.strip().replace("nan", "")
+    date_failure_count = int(((raw_non_empty_dates != "") & df["transaction_date"].isna()).sum())
 
     dedupe_cols = [
         "transaction_id",
@@ -112,11 +152,16 @@ def main() -> None:
         "payment_method",
     ]
     df = df.drop_duplicates(subset=dedupe_cols).copy()
+    cleaned_row_count = len(df)
 
     df["revenue"] = df["quantity"] * df["unit_price"] * (1 - df["discount"])
     df["estimated_profit"] = df["revenue"] - df["expense_amount"]
     df["year"] = df["transaction_date"].dt.year
     df["month"] = df["transaction_date"].dt.to_period("M").astype(str)
+    df["transaction_date"] = df["transaction_date"].dt.strftime("%Y-%m-%d")
+
+    for col in ["revenue", "expense_amount", "estimated_profit"]:
+        df[col] = df[col].round(2)
 
     df = df.sort_values("transaction_date")
     df.to_csv(CLEAN_DATA_PATH, index=False)
@@ -188,6 +233,11 @@ def main() -> None:
     report_text = build_report(kpi_summary, monthly_summary, category_summary, region_summary)
     REPORT_PATH.write_text(report_text, encoding="utf-8")
 
+    print(f"Raw rows: {raw_row_count}")
+    print(f"Cleaned rows (after dedupe): {cleaned_row_count}")
+    print(f"Date parsing failures (non-empty raw date): {date_failure_count}")
+    if date_failure_count > 0:
+        print("WARNING: Some non-empty raw dates could not be parsed and remain blank in cleaned outputs.")
     print("Dashboard-ready files created successfully.")
 
 
