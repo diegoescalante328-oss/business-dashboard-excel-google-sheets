@@ -1,0 +1,14 @@
+transaction_id,transaction_date,customer_segment,product_category,product_name,region,sales_channel,quantity,unit_price,discount,expense_category,expense_amount,payment_method
+TXN-001,2026-01-05,small business,office supplies,Notebook Pack, north,Online,10,12.50,0.05,shipping,18.00,card
+TXN-002,01/08/2026,Enterprise,Software,Subscription Basic,West ,online,3,99.99,,platform,45.50,Bank Transfer
+TXN-003,2026/01/15,Retail,Electronics,Wireless Mouse,South,In-Store,7,25,0.10,returns,12.40,cash
+TXN-004,15-02-2026,Small Business,Office Supplies,Printer Paper,East,Online,20,6.75, 0.00 ,shipping,10.00,Card
+TXN-005,2026-02-21,retail,Electronics,USB-C Cable, NORTH,online,15,8.5,0.15,marketing,9.75,card
+TXN-006,03/01/2026,Enterprise,Software,Subscription Pro,West,Online,2,199.00,0.05,platform,60.00,Bank transfer
+TXN-007,2026-03-11,Small business,Office Supplies,Desk Organizer,East ,In-store,5,18.20,,shipping,8.25,CARD
+TXN-008,2026/03/20,Retail,Electronics,Keyboard,South,Online,4,45.00,0.20,returns,14.00,Cash
+TXN-009,2026-04-04,Enterprise,Software,Subscription Basic,West,Online,4,99.99,0.00,platform,50.00,Bank Transfer
+TXN-010,04-12-2026,Retail,Office Supplies,Stapler,North,In-Store,9,11.00,0.05,shipping,7.90,Card
+TXN-011,2026-04-18,Small Business,Electronics,Monitor Stand,East,online,6,34.50,0.10,marketing,15.20,card
+TXN-011,2026-04-18,Small Business,Electronics,Monitor Stand,East,online,6,34.50,0.10,marketing,15.20,card
+TXN-012,2026-04-27,Enterprise,Software,Subscription Pro, West,Online,1,199.00,,platform,58.00,Bank Transfer
