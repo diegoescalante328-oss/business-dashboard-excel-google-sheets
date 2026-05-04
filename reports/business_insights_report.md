@@ -8,18 +8,19 @@ How is monthly revenue and profit performing, and which categories and regions s
 
 ## Dataset description and caveats
 - Synthetic transactional data for portfolio demonstration only.
-- Mixed date formats and inconsistent text were cleaned for reporting.
+- Mixed raw date formats were standardized during preparation for consistent monthly reporting.
 - One duplicate business row was removed during preparation.
+- No real company data is used; outputs are synthetic demo data only.
 
 ## Dashboard KPI snapshot
-- Total Revenue: 2312.0
+- Total Revenue: 2312.01
 - Total Expenses: 309.0
 - Estimated Profit: 2003.0
 - Total Orders: 12
 - Average Order Value: 192.67
 
 ## Monthly performance summary
-Best month by estimated profit: **2026-04** (349.96).
+Best month by estimated profit: **2026-04** (748.21).
 Revenue and profit are influenced by recurring software subscriptions and periodic electronics orders.
 
 ## Category performance summary
